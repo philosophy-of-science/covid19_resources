@@ -1,0 +1,14 @@
+{
+  "name": "covid19_resources",
+  "version": "1.0.0",
+  "description": "Resources for Teaching Philosophy in the Time of COVID",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Feigenbaum",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1"
+  }
+}
