@@ -1,0 +1,30 @@
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:wght@400;700;900&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  {% include style.css %}
+</style>
+<div class="c__container">
+  {% include _header.html %}
+  <h2 class="c__subheader" id="articles">Articles</h2>
+  <section class="c__article--container hs">
+    {% for title in articleData %} {% include _article.html %} {% endfor %}
+  </section>
+
+  <h2 class="c__subheader" id="videos">Videos</h2>
+  <section class="c__article--container hs">
+    {% for title in videoData %} {{title.html}} {% endfor %}
+  </section>
+</div>
+
+<script>
+  const el = document.querySelector(".hs");
+
+  el.addEventListener("wheel", e => {
+    e.preventDefault();
+    el.scrollTop = 0;
+    el.scrollLeft += e.deltaY;
+  });
+</script>
