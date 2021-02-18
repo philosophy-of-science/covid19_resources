@@ -12,8 +12,8 @@
 
   <h2 class="c__subheader" id="articles">Articles</h2>
   <section class="c__content--container hs">
-    {%- for title in articleData.articles -%} {% include _article.html %} {%-
-    endfor -%}
+    {%- for title in article.articles -%} {% include _article.html %} {%- endfor
+    -%}
     <div class="c__spacer"></div>
   </section>
 
@@ -21,20 +21,20 @@
     Articles from <em>History and Philosophy of the Life Sciences</em>
   </h3>
   <section class="c__content--container hs">
-    {%- for title in articleData["History and Philosophy of the Life Sciences"]
-    -%} {% include _article.html %} {%- endfor -%}
+    {%- for title in article["History and Philosophy of the Life Sciences"] -%}
+    {% include _article.html %} {%- endfor -%}
     <div class="c__spacer"></div>
   </section>
 
   <h2 class="c__subheader--header" id="videos">Videos</h2>
   <section class="c__content--container--video hs">
-    {%- for title in videoData -%} {% include _video.html %} {%- endfor -%}
+    {%- for title in video -%} {% include _video.html %} {%- endfor -%}
     <div class="c__spacer"></div>
   </section>
 
   <h2 class="c__subheader--header" id="other">Other</h2>
   <section class="c__content--container--other hs">
-    {%- for title in otherData -%} {% include _article.html %} {%- endfor -%}
+    {%- for title in other -%} {% include _article.html %} {%- endfor -%}
     <div class="c__spacer"></div>
   </section>
 </div>
