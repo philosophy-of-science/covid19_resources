@@ -2,14 +2,14 @@ $red: #af1f24;
 $straw: #f9f4db;
 $heading: "Raleway", sans-serif;
 $body: "Inter", sans-serif;
-$btn-padding: 0.65rem 1rem;
-$padding: 2rem 3rem;
+$btn-padding: 0.65em 1em;
+$padding: 2em 3em;
 $radius: 8px;
 $box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 $box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 $box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
   0 4px 6px -2px rgba(0, 0, 0, 0.05);
-$btn-icon-mr: 0.5rem;
+$btn-icon-mr: 0.5em;
 $transition: 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
 
 // Breakpoints
@@ -18,25 +18,41 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
+// Mixins
+@mixin padding() {
+  $ratio: 1.5;
+  padding: 0.5em 0.5em * $ratio;
+  @media (min-width: $md) {
+    padding: 1em 1em * $ratio;
+  }
+  @media (min-width: $lg) {
+    padding: 2em 2em * $ratio;
+  }
+}
+
 // Typography
 
 // CONTAINER
-* {
-  box-sizing: border-box;
-}
-body {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #eeeeee;
+// * {
+//   box-sizing: border-box;
+// }
+// body {
+//   margin: 0 auto;
+//   background: #ffffff;
+//   max-width: 1200px;
+// }
+
+// Container
+h1.title {
+  display: none;
 }
 .c {
   &__container {
     font-family: Inter, sans-serif;
-    // font-size: clamp(1rem, 1rem + 0.2vw, 2rem);
     font-size: 18px;
+    font-size: clamp(16px, 16px + 0.1vw, 21px);
     line-height: 1.5;
-    margin-top: 1rem;
-    padding: 2rem;
+    @include padding;
     h1,
     h2,
     h3,
@@ -46,21 +62,21 @@ body {
     }
     h1 {
       font-size: 3.22222222em;
-      line-height: 1.06578947em;
+      line-height: 1.06578947em !important;
       margin-top: 0;
       margin-bottom: 0.71052632em;
       font-weight: 700;
     }
     h2 {
       font-size: 2.61111111em;
-      line-height: 1.14893617em;
+      line-height: 1.14893617em !important;
       margin-top: 0.57446809em;
       margin-bottom: 0.57446809em;
     }
     h3,
     .h3 {
       font-size: 1.61111111em;
-      line-height: 1.86206897em;
+      line-height: 1.86206897em !important;
       margin-top: 0.93103448em;
       margin-bottom: 0em;
     }
@@ -72,38 +88,43 @@ body {
   &__header {
     display: flex;
     flex-direction: column-reverse;
-    margin: 5rem 0;
+    margin-bottom: 5em;
     background: #ffffff;
-    min-height: 20rem;
+    min-height: 20em;
     min-height: 300px;
     color: #ffffff;
     background: $red;
     border-radius: $radius;
+    box-shadow: $box-shadow-sm;
+
     @media (min-width: $md) {
       flex-direction: row;
     }
     &--left,
     &--right {
+      @include padding;
       @media (min-width: $md) {
         width: 50%;
         flex-shrink: 0;
       }
     }
     &--left {
-      padding: $padding;
       display: inline-flex;
       flex-direction: column;
       align-items: flex-start;
       h1 {
         margin: 0;
+        color: #ffffff;
       }
       p {
-        margin-top: 0.5rem;
+        margin-top: 0.5em;
+        color: #f5f5f5;
       }
       button {
         margin-top: auto;
         display: flex;
         align-items: center;
+        color: #000;
         cursor: pointer;
         padding: $btn-padding;
         background: $straw;
@@ -127,13 +148,19 @@ body {
       justify-content: center;
       position: relative;
       min-height: 300px;
+      @media (min-width: $md) {
+        padding: 0;
+      }
       img {
         position: absolute;
         top: 50%;
         left: 50%;
         max-width: 100%;
-        height: 400px;
-        transform: translate3d(-50%, -50%, 0);
+        height: 100% !important;
+        @media (min-width: $md) {
+          height: 115% !important;
+        }
+        transform: translate3d(-50%, -50%, 0) scaleX(-1);
       }
     }
   }
@@ -142,20 +169,33 @@ body {
 // SUBHEADER
 h2.c__subheader {
   font-weight: 700;
-  margin-left: 0.5rem;
+  margin-left: 0.5em;
   letter-spacing: 0.5px;
 }
-// ARTICLE
+// CONTENT
 .c {
-  &__article {
+  &__content {
+    width: 25em;
+    max-width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 1em;
+    border-radius: $radius;
+    box-shadow: $box-shadow-lg;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     &--container {
       display: flex;
+      margin-bottom: 5em;
       overflow: auto;
-      background: $straw;
+      background-color: $straw;
       border-radius: $radius;
-      padding: 3rem 2rem;
+      @include padding;
       scrollbar-width: 1em;
       scrollbar-color: scale-color($straw, $lightness: -50%) transparent;
+      box-shadow: $box-shadow-sm;
 
       &::-webkit-scrollbar {
         width: 1em;
@@ -169,21 +209,23 @@ h2.c__subheader {
         background-color: scale-color($straw, $lightness: -50%);
         border-radius: $radius;
       }
+      &--video {
+        @extend .c__content--container;
+        background: $red;
+      }
+      &--other {
+        @extend .c__content--container;
+        background: rgb(174, 174, 174);
+      }
+      &--syllabi {
+        @extend .c__content--container;
+        background: rgb(94, 94, 94);
+      }
     }
-    width: 25rem;
-    flex-grow: 0;
-    flex-shrink: 0;
-    margin: 1.5rem;
-    border-radius: $radius;
-    box-shadow: $box-shadow;
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 
     header {
-      height: 12rem;
-      margin-bottom: 1rem;
+      height: 12em;
+      margin-bottom: 1em;
       border-top-left-radius: $radius;
       border-top-right-radius: $radius;
       width: 100%;
@@ -192,17 +234,18 @@ h2.c__subheader {
       img {
         border-top-left-radius: $radius;
         border-top-right-radius: $radius;
-        height: 100%;
+        height: 100% !important;
         width: 100%;
         object-fit: cover;
+        object-position: top;
       }
     }
     &--body,
     footer {
-      padding: 1rem 2rem;
+      padding: 1em 2em;
     }
     &--title {
-      font-size: 1.25rem;
+      font-size: 1.25em;
       line-height: 1.4;
       font-weight: 600;
       text-decoration: none;
@@ -217,7 +260,7 @@ h2.c__subheader {
       color: #474747;
       line-height: 1.2;
       font-size: 90%;
-      margin-top: 0.25rem;
+      margin-top: 0.25em;
     }
     &--description {
       display: -webkit-box;
@@ -229,6 +272,7 @@ h2.c__subheader {
       margin-bottom: 0;
     }
     &--submitter {
+      margin: 0;
       color: rgb(94, 94, 94);
       font-size: max(15px, 75%);
     }
@@ -243,7 +287,7 @@ h2.c__subheader {
     &--btn {
       padding: $btn-padding;
       font-family: $body;
-      font-size: max(0.8rem, 14px);
+      font-size: max(0.8em, 14px);
       line-height: 1;
       background: $red;
       color: #ffffff;
@@ -255,6 +299,8 @@ h2.c__subheader {
       transition: background $transition, color $transition;
       &:hover {
         background: scale-color($color: $red, $lightness: -50%);
+        color: #ffffff;
+        text-decoration: none;
         svg {
           color: $straw;
         }
@@ -265,4 +311,8 @@ h2.c__subheader {
       }
     }
   }
+}
+
+.c__spacer {
+  @include padding;
 }

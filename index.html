@@ -1,30 +1,59 @@
-<link rel="preconnect" href="https://fonts.gstatic.com" />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:wght@400;700;900&display=swap"
-  rel="stylesheet"
-/>
 <style>
   {% include style.css %}
 </style>
 <div class="c__container">
   {% include _header.html %}
-  <h2 class="c__subheader" id="articles">Articles</h2>
-  <section class="c__article--container hs">
-    {% for title in articleData %} {% include _article.html %} {% endfor %}
+
+  <h2 class="c__subheader" id="articles">Syllabi</h2>
+  <section class="c__content--container--syllabi hs">
+    {%- for title in syllabi -%} {% include _syllabus.html %} {%- endfor -%}
+    <div class="c__spacer"></div>
   </section>
 
-  <h2 class="c__subheader" id="videos">Videos</h2>
-  <section class="c__article--container hs">
-    {% for title in videoData %} {{title.html}} {% endfor %}
+  <h2 class="c__subheader" id="articles">Articles</h2>
+  <section class="c__content--container hs">
+    {%- for title in articleData.articles -%} {% include _article.html %} {%-
+    endfor -%}
+    <div class="c__spacer"></div>
+  </section>
+
+  <h3 class="c__subheader" id="articles">
+    Articles from <em>History and Philosophy of the Life Sciences</em>
+  </h3>
+  <section class="c__content--container hs">
+    {%- for title in articleData["History and Philosophy of the Life Sciences"]
+    -%} {% include _article.html %} {%- endfor -%}
+    <div class="c__spacer"></div>
+  </section>
+
+  <h2 class="c__subheader--header" id="videos">Videos</h2>
+  <section class="c__content--container--video hs">
+    {%- for title in videoData -%} {% include _video.html %} {%- endfor -%}
+    <div class="c__spacer"></div>
+  </section>
+
+  <h2 class="c__subheader--header" id="other">Other</h2>
+  <section class="c__content--container--other hs">
+    {%- for title in otherData -%} {% include _article.html %} {%- endfor -%}
+    <div class="c__spacer"></div>
   </section>
 </div>
 
 <script>
-  const el = document.querySelector(".hs");
+  const els = document.querySelectorAll(".hs");
 
-  el.addEventListener("wheel", e => {
-    e.preventDefault();
-    el.scrollTop = 0;
-    el.scrollLeft += e.deltaY;
+  function horizontalScroll(e) {
+    const el = this;
+    // check whether the element has scrollable content
+    if (el.scrollWidth > el.clientWidth) {
+      e.preventDefault();
+      console.log(e.deltaY / e.deltaY);
+      el.scrollTop = 0;
+      el.scrollLeft += Math.max(e.deltaY, 100) * Math.sign(e.deltaY);
+    }
+  }
+
+  els.forEach(el => {
+    el.addEventListener("wheel", horizontalScroll.bind(el));
   });
 </script>
