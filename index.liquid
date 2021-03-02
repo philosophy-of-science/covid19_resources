@@ -133,7 +133,6 @@
     const el = this;
     if (el.scrollWidth > el.clientWidth) {
       e.preventDefault();
-      console.log(e.deltaY / e.deltaY);
       el.scrollTop = 0;
       el.scrollLeft += Math.max(e.deltaY, 100) * Math.sign(e.deltaY);
     }

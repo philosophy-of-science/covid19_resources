@@ -227,7 +227,7 @@ h2.c__subheader {
 .c {
   &__content {
     width: 25em;
-    max-width: 100%;
+    max-width: calc(100% - 12px);
     flex-grow: 0;
     flex-shrink: 0;
     margin: 0.5em;
@@ -330,7 +330,7 @@ h2.c__subheader {
       overflow: hidden;
       font-weight: 100;
       font-size: #{"max(16px, 80%)"};
-      margin-bottom: 0;
+      margin: 20px 0 0;
     }
     &--submitter {
       display: flex;
@@ -417,6 +417,7 @@ h2.c__subheader {
   top: 0;
   transform: translate(-50%, calc(-100% - 10px));
   border-radius: $radius;
+  line-height: 1;
   transition: opacity 0.2s;
   &:after {
     border-top: 10px solid #fff;
