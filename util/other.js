@@ -35,7 +35,7 @@ const findImagesForArticles = async () => {
     articles.map(article => getImage(article))
   );
   fs.writeFile(
-    path.join("../_data/", "otherData.json"),
+    path.join("../_data/", "other.json"),
     JSON.stringify(fetchedImages),
     err => {
       if (err) console.log("error");

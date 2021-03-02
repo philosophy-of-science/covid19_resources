@@ -4,11 +4,13 @@
   "description": "Resources for Teaching Philosophy in the Time of COVID",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --style=compressed styles/style.scss _includes/style.css",
+    "sass": "sass --style=compressed styles/style.scss src/style.css",
     "watch:eleventy": "eleventy --serve",
     "watch:sass": "npm run sass -- --watch",
     "start": "npm-run-all sass --parallel watch:*",
-    "dev": "npm run watch:sass & npx eleventy --serve"
+    "dev": "npm run watch:sass & npx eleventy --serve",
+    "build": "npm run sass && node css && npx @11ty/eleventy",
+    "css": "npm run sass && node css"
   },
   "author": "Ryan Feigenbaum",
   "license": "ISC",
@@ -18,9 +20,12 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^0.11.1",
+    "autoprefixer": "^10.2.4",
     "axios": "^0.21.1",
     "axios-cookiejar-support": "^1.0.1",
     "csvtojson": "^2.0.10",
+    "postcss": "^8.2.6",
+    "precss": "^4.0.0",
     "tough-cookie": "^4.0.0"
   }
 }

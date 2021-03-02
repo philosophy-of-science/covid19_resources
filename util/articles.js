@@ -82,5 +82,3 @@ const writeArticleData = async articles => {
 };
 
 writeArticleData(articles);
-
-module.exports = findImagesForArticles;

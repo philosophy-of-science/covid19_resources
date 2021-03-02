@@ -1,0 +1,157 @@
+<style>
+  {% include style.css %}
+</style>
+<div class="c__container">
+  {% include _sharebar %} {% include _header %}
+  <!-- Begin gallery view -->
+  <div class="c__gallery">
+    <h2 class="c__subheader" id="articles">Syllabi</h2>
+    <section class="c__content--container--syllabi hs">
+      {%- for title in syllabi -%} {% include _syllabus %} {%- endfor -%}
+      <div class="c__spacer"></div>
+    </section>
+
+    <h2 class="c__subheader" id="articles">Articles</h2>
+    <section class="c__content--container hs">
+      {%- for title in article.articles -%} {% include _article %} {%- endfor
+      -%}
+      <div class="c__spacer"></div>
+    </section>
+
+    <h3 class="c__subheader" id="articles">
+      Articles from <em>History and Philosophy of the Life Sciences</em>
+    </h3>
+    <section class="c__content--container hs">
+      {%- for title in article["History and Philosophy of the Life Sciences"]
+      -%} {% include _article %} {%- endfor -%}
+      <div class="c__spacer"></div>
+    </section>
+
+    <h2 class="c__subheader--header" id="videos">Videos</h2>
+    <section class="c__content--container--video hs">
+      {%- for title in video -%} {% include _video %} {%- endfor -%}
+      <div class="c__spacer"></div>
+    </section>
+
+    <h2 class="c__subheader--header" id="podcasts">Podcasts</h2>
+    <section class="c__content--container--podcast hs">
+      {%- for title in podcast -%} {% include _podcast %} {%- endfor -%}
+      <div class="c__spacer"></div>
+    </section>
+
+    <h2 class="c__subheader--header" id="more">More Resources</h2>
+    <section class="c__content--container--other hs">
+      {%- for title in other -%} {% include _other %} {%- endfor -%}
+      <div class="c__spacer"></div>
+    </section>
+  </div>
+  <!-- Begin list view  -->
+  <div class="c__list">
+    <h2>Syllabi</h2>
+    <section>
+      {%- for title in syllabi -%}
+      <ul>
+        <li>
+          <a href="{{ title.link }}">{{ title.title }}</a
+          >. {{ title.authors }}
+        </li>
+      </ul>
+      {%- endfor -%}
+    </section>
+    <hr />
+
+    <h2>Articles</h2>
+    <section>
+      {%- for title in article.articles -%}
+      <ul>
+        <li>
+          <a href="{{ title.link }}">{{ title.title }}</a
+          >. {{ title.authors }}
+        </li>
+      </ul>
+      {%- endfor -%}
+    </section>
+    <hr />
+
+    <h3>Articles from <em>History and Philosophy of the Life Sciences</em></h3>
+    <section>
+      {%- for title in article["History and Philosophy of the Life Sciences"]
+      -%}
+      <ul>
+        <li>
+          <a href="{{ title.link }}">{{ title.title }}</a
+          >. {{ title.authors }}
+        </li>
+      </ul>
+      {%- endfor -%}
+    </section>
+    <hr />
+
+    <h2>Videos</h2>
+    <section>
+      {%- for title in video -%}
+      <ul>
+        <li>
+          <a href="{{ title.link }}">{{ title.title }}</a
+          >. {{ title.authors }}
+        </li>
+      </ul>
+      {%- endfor -%}
+    </section>
+    <hr />
+
+    <h2>Podcasts</h2>
+    <section>
+      {%- for title in podcast -%}
+      <ul>
+        <li>
+          <a href="{{ title.link }}">{{ title.title }}</a
+          >. {{ title.authors }}
+        </li>
+      </ul>
+      {%- endfor -%}
+    </section>
+    <hr />
+
+    <h2>Additional Resources</h2>
+    <section>
+      {%- for title in other -%}
+      <ul>
+        <li>
+          <a href="{{ title.link }}">{{ title.title }}</a
+          >. {{ title.authors }}
+        </li>
+      </ul>
+      {%- endfor -%}
+    </section>
+  </div>
+</div>
+
+<script>
+  const els = document.querySelectorAll(".hs");
+  function horizontalScroll(e) {
+    const el = this;
+    if (el.scrollWidth > el.clientWidth) {
+      e.preventDefault();
+      console.log(e.deltaY / e.deltaY);
+      el.scrollTop = 0;
+      el.scrollLeft += Math.max(e.deltaY, 100) * Math.sign(e.deltaY);
+    }
+  }
+  els.forEach(el => {
+    el.addEventListener("wheel", horizontalScroll.bind(el));
+  });
+  const container = document.querySelector(".c__gallery");
+  container.addEventListener("click", e => {
+    const elCheck =
+      e.target.classList.contains("c__content--submitter") ||
+      e.target.parentElement.classList.contains("c__content--submitter");
+    if (!elCheck) {
+      const showingTooltips = document.querySelectorAll(".c__sm.show");
+      showingTooltips.forEach(el => el.classList.remove("show"));
+      return;
+    }
+    const target = e.target.closest("button").querySelector(".c__sm");
+    target.classList.toggle("show");
+  });
+</script>
