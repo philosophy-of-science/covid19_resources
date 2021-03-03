@@ -5,41 +5,42 @@
   {% include _sharebar %} {% include _header %}
   <!-- Begin gallery view -->
   <div class="c__gallery">
-    <h2 class="c__subheader" id="articles">Syllabi</h2>
+    <h2 class="c__subheader" id="articles" c-scroll="scroll &#10140;">Syllabi</h2>
     <section class="c__content--container--syllabi hs">
       {%- for title in syllabi -%} {% include _syllabus %} {%- endfor -%}
       <div class="c__spacer"></div>
     </section>
 
-    <h2 class="c__subheader" id="articles">Articles</h2>
+    <h2 class="c__subheader" id="articles" c-scroll="scroll &#10140;">Articles</h2>
     <section class="c__content--container hs">
       {%- for title in article.articles -%} {% include _article %} {%- endfor
       -%}
       <div class="c__spacer"></div>
     </section>
 
-    <h3 class="c__subheader" id="articles">
-      Articles from <em>History and Philosophy of the Life Sciences</em>
+    <h3 class="c__subheader" id="articles" c-scroll="scroll &#10140;">
+      Articles from <em>History and Philosophy of the Life Sciences</em><span style="color: #AF1F24">*</span>
     </h3>
     <section class="c__content--container hs">
       {%- for title in article["History and Philosophy of the Life Sciences"]
       -%} {% include _article %} {%- endfor -%}
       <div class="c__spacer"></div>
     </section>
+    
 
-    <h2 class="c__subheader--header" id="videos">Videos</h2>
+    <h2 class="c__subheader" id="videos" c-scroll="scroll &#10140;">Videos</h2>
     <section class="c__content--container--video hs">
       {%- for title in video -%} {% include _video %} {%- endfor -%}
       <div class="c__spacer"></div>
     </section>
 
-    <h2 class="c__subheader--header" id="podcasts">Podcasts</h2>
+    <h2 class="c__subheader" id="podcasts" c-scroll="scroll &#10140;">Podcasts</h2>
     <section class="c__content--container--podcast hs">
       {%- for title in podcast -%} {% include _podcast %} {%- endfor -%}
       <div class="c__spacer"></div>
     </section>
 
-    <h2 class="c__subheader--header" id="more">More Resources</h2>
+    <h2 class="c__subheader" id="more" c-scroll="scroll &#10140;">More Resources</h2>
     <section class="c__content--container--other hs">
       {%- for title in other -%} {% include _other %} {%- endfor -%}
       <div class="c__spacer"></div>
@@ -73,7 +74,7 @@
     </section>
     <hr />
 
-    <h3>Articles from <em>History and Philosophy of the Life Sciences</em></h3>
+    <h3>Articles from <em>History and Philosophy of the Life Sciences</em><span style="color: #AF1F24">*</span></h3>
     <section>
       {%- for title in article["History and Philosophy of the Life Sciences"]
       -%}
@@ -125,6 +126,8 @@
       {%- endfor -%}
     </section>
   </div>
+
+  <small><span style="color: #AF1F24">*</span>Sources that have more than five submissions are moved into their own section</small>
 </div>
 
 <script>
@@ -139,6 +142,9 @@
   }
   els.forEach(el => {
     el.addEventListener("wheel", horizontalScroll.bind(el));
+    if (el.scrollWidth > el.clientWidth) {
+     el.previousElementSibling.classList.add('c__badge');
+    }
   });
   const container = document.querySelector(".c__gallery");
   container.addEventListener("click", e => {
@@ -153,4 +159,5 @@
     const target = e.target.closest("button").querySelector(".c__sm");
     target.classList.toggle("show");
   });
+  
 </script>

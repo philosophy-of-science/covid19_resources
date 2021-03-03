@@ -218,22 +218,42 @@ h1.title {
 }
 
 // SUBHEADER
-h2.c__subheader {
+h2.c__subheader,
+h3.c__subheader {
   font-weight: 700;
-  margin-left: 0.5em;
+  margin: 0 0 0.15em 0.5em;
   letter-spacing: 0.5px;
+  &.c__badge::after {
+    content: attr(c-scroll);
+    background-color: #fafafa;
+    color: #707070;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    font-weight: 300;
+    padding: 0.25em 0.5em;
+    border-radius: $radius;
+    text-transform: uppercase;
+  }
 }
 // CONTENT
 .c {
   &__content {
-    width: 25em;
-    max-width: calc(100% - 12px);
+    width: calc(100% - 2em);
+    max-width: 300px;
+    @media (min-width: $sm) {
+      width: 300px;
+    }
+    @media (min-width: $md) {
+      width: 350px;
+      max-width: 350px;
+    }
+
+    // width: 25em;
     flex-grow: 0;
     flex-shrink: 0;
-    margin: 0.5em;
-    @media (min-width: $sm) {
-      margin: 1em;
-    }
+    margin: 1em;
     border-radius: $radius;
     box-shadow: $box-shadow-lg;
     background: #fafafa;
@@ -246,22 +266,22 @@ h2.c__subheader {
       overflow: auto;
       background-color: $straw;
       border-radius: $radius;
-      @include padding;
       scrollbar-width: 1em;
-      scrollbar-color: scale-color($straw, $lightness: -50%) transparent;
-      box-shadow: $box-shadow-sm;
+      scrollbar-color: rgb(250, 250, 250) rgba(230, 230, 230, 0.75);
+      box-shadow: $box-shadow;
 
       &::-webkit-scrollbar {
         width: 1em;
       }
       &::-webkit-scrollbar-track {
-        border-radius: $radius;
-
-        border: 1px solid scale-color($straw, $lightness: -50%);
+        border-bottom-left-radius: $radius;
+        border-bottom-right-radius: $radius;
+        background-color: rgba(230, 230, 230, 0.75);
       }
       &::-webkit-scrollbar-thumb {
-        background-color: scale-color($straw, $lightness: -50%);
+        background-color: rgb(250, 250, 250);
         border-radius: $radius;
+        box-shadow: $box-shadow-sm;
       }
       &--video {
         @extend .c__content--container;
@@ -344,14 +364,16 @@ h2.c__subheader {
       box-shadow: none;
       background: none;
       position: relative;
+      margin-left: 2px;
       cursor: pointer;
       transition: color 0.2s;
 
       &:hover p {
         color: #000;
       }
+
       p {
-        margin: 0;
+        margin: 0 0 1px 0;
         color: rgb(94, 94, 94);
         font-size: 15px;
         text-align: right;
@@ -435,8 +457,9 @@ h2.c__subheader {
     pointer-events: auto;
   }
 }
-.c__spacer {
-  @include padding;
+
+.c__content + .c__content + .c__spacer {
+  padding: 1em;
 }
 
 // Switch
