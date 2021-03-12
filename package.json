@@ -10,7 +10,8 @@
     "start": "npm-run-all sass --parallel watch:*",
     "dev": "npm run watch:sass & npx eleventy --serve",
     "build": "npm run sass && node css && npx @11ty/eleventy",
-    "css": "npm run sass && node css"
+    "css": "npm run sass && node css",
+    "fetch": "cd util && node fetchData"
   },
   "author": "Ryan Feigenbaum",
   "license": "ISC",

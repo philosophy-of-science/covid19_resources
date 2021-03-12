@@ -39,8 +39,11 @@ const videosWithEmbeds = videos.map(video => {
     return video;
   }
 });
+const writeVideoData = () => {
+  fs.writeFile("../_data/video.json", JSON.stringify(videosWithEmbeds), err => {
+    if (err) console.log(err);
+    console.log("Video data written");
+  });
+};
 
-fs.writeFile("../_data/video.json", JSON.stringify(videosWithEmbeds), err => {
-  if (err) console.log(err);
-  console.log("Video data written");
-});
+module.exports = writeVideoData;

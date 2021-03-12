@@ -30,7 +30,7 @@ const articles = jsonData
   .filter(item => item.type === "Other")
   .sort((a, b) => (a.title > b.title ? 1 : -1));
 
-const findImagesForArticles = async () => {
+const writeOtherData = async () => {
   const fetchedImages = await Promise.all(
     articles.map(article => getImage(article))
   );
@@ -45,6 +45,4 @@ const findImagesForArticles = async () => {
   return fetchedImages;
 };
 
-findImagesForArticles();
-
-module.exports = findImagesForArticles;
+module.exports = writeOtherData;

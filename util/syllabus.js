@@ -6,7 +6,11 @@ const syllabi = jsonData
   .filter(item => item.type === "Syllabus")
   .sort((a, b) => (a.title > b.title ? 1 : -1));
 
-fs.writeFile("../_data/syllabi.json", JSON.stringify(syllabi), err => {
-  if (err) console.log(err);
-  console.log("Syllabi data written");
-});
+const writeSyllabusData = () => {
+  fs.writeFile("../_data/syllabi.json", JSON.stringify(syllabi), err => {
+    if (err) console.log(err);
+    console.log("Syllabi data written");
+  });
+};
+
+module.exports = writeSyllabusData;

@@ -81,4 +81,4 @@ const writeArticleData = async articles => {
   );
 };
 
-writeArticleData(articles);
+module.exports = { writeArticleData, articles };
