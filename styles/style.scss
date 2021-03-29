@@ -223,6 +223,20 @@ h3.c__subheader {
   font-weight: 700;
   margin: 0 0 0.15em 0.5em;
   letter-spacing: 0.5px;
+  &::before {
+    content: attr(data-count);
+    display: inline-block;
+    font-size: 50%;
+    line-height: 1;
+    background-color: #af1f24;
+    color: #fff;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    margin-right: 0.25em;
+    border-radius: $radius;
+    padding: 0.25em;
+    transform: translateY(-25%);
+  }
   &.c__badge::after {
     content: attr(c-scroll);
     background-color: #fafafa;
@@ -365,12 +379,7 @@ h3.c__subheader {
       background: none;
       position: relative;
       margin-left: 2px;
-      cursor: pointer;
       transition: color 0.2s;
-
-      &:hover p {
-        color: #000;
-      }
 
       p {
         margin: 0 0 1px 0;
@@ -646,5 +655,13 @@ h3.c__subheader {
       width: 100%;
       height: 100%;
     }
+  }
+}
+
+button.c__content--submitter {
+  cursor: pointer;
+
+  &:hover p {
+    color: #000;
   }
 }

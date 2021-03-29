@@ -1,4 +1,10 @@
-<button class="c__content--submitter">
+
+{% if title.tw == '' and title.fb == '' and title.li == '' %}
+<div class="c__content--submitter">
+<p>Submitted by {{title.submitter}}</p>
+</div>
+{% else %}
+<button class="c__content--submitter c__share">
   <p>Submitted by {{title.submitter}}</p> {%- if title.tw != "" -%}
   <div class="c__sm">
   <a class="c__tw" href="{{title.tw}}"
@@ -59,3 +65,4 @@
   {%- endif -%}
   </div>
 </button>
+{% endif %}

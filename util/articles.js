@@ -11,15 +11,43 @@ axiosCookieJarSupport(axios);
 
 const cookieJar = new tough.CookieJar();
 
+const verifyImage = imgStr => {
+  const checkBeginningAndEnd = str => /^http.+(jp||pn)g$/.test(str);
+
+  const jpg =
+    checkBeginningAndEnd(
+      imgStr.match(/http[^"]+\.jpg/) && imgStr.match(/[^"]+\.jpg/)[0]
+    ) &&
+    imgStr.match(/http[^"]+\.jpg/) &&
+    imgStr.match(/[^"]+\.jpg/)[0];
+
+  const png =
+    checkBeginningAndEnd(
+      imgStr.match(/http[^"]+\.png/) && imgStr.match(/[^"]+\.png/)[0]
+    ) &&
+    imgStr.match(/http[^"]+\.png/) &&
+    imgStr.match(/[^"]+\.png/)[0];
+
+  const fallback = "https://philsci.org/photos/covid.svg";
+  console.log({
+    jpg,
+    jpgImg: imgStr.match(/http[^"]+\.jpg/) && imgStr.match(/[^"]+\.jpg/)[0],
+    png,
+    pngImg: imgStr.match(/http[^"]+\.jpg/) && imgStr.match(/[^"]+\.jpg/)[0],
+    fallback,
+  });
+  return jpg || png || fallback;
+};
+
 const getImage = article => {
   return new Promise(async (resolve, reject) => {
     const { data } = await axios.get(article.link, {
       jar: cookieJar,
       withCredentials: true,
     });
-    const img =
-      (data.match(/[^"]+\.jpg/) && data.match(/[^"]+\.jpg/)[0]) ||
-      "https://philsci.org/photos/covid.svg";
+    const img = verifyImage(data);
+    console.log(img);
+
     article.image = img;
     resolve(article);
     reject("error");

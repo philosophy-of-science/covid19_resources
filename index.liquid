@@ -5,20 +5,20 @@
   {% include _sharebar %} {% include _header %}
   <!-- Begin gallery view -->
   <div class="c__gallery">
-    <h2 class="c__subheader" id="articles" c-scroll="scroll &#10140;">Syllabi</h2>
+    <h2 data-count="{{syllabi.length}}" class="c__subheader" id="syllabi" c-scroll="scroll &#10140;">Syllabi</h2>
     <section class="c__content--container--syllabi hs">
       {%- for title in syllabi -%} {% include _syllabus %} {%- endfor -%}
       <div class="c__spacer"></div>
     </section>
 
-    <h2 class="c__subheader" id="articles" c-scroll="scroll &#10140;">Articles</h2>
+    <h2 data-count="{{article.articles.length}}" class="c__subheader" id="articles" c-scroll="scroll &#10140;">Articles</h2>
     <section class="c__content--container hs">
       {%- for title in article.articles -%} {% include _article %} {%- endfor
       -%}
       <div class="c__spacer"></div>
     </section>
 
-    <h3 class="c__subheader" id="articles" c-scroll="scroll &#10140;">
+    <h3 data-count="{{article['History and Philosophy of the Life Sciences'].length}}" class="c__subheader" id="history-and-philosophy-of-the-life-sciences" c-scroll="scroll &#10140;">
       Articles from <em>History and Philosophy of the Life Sciences</em><span style="color: #AF1F24">*</span>
     </h3>
     <section class="c__content--container hs">
@@ -28,19 +28,19 @@
     </section>
     
 
-    <h2 class="c__subheader" id="videos" c-scroll="scroll &#10140;">Videos</h2>
+    <h2 data-count="{{video.length}}" class="c__subheader" id="videos" c-scroll="scroll &#10140;">Videos</h2>
     <section class="c__content--container--video hs">
       {%- for title in video -%} {% include _video %} {%- endfor -%}
       <div class="c__spacer"></div>
     </section>
 
-    <h2 class="c__subheader" id="podcasts" c-scroll="scroll &#10140;">Podcasts</h2>
+    <h2 data-count="{{podcast.length}}" class="c__subheader" id="podcasts" c-scroll="scroll &#10140;">Podcasts</h2>
     <section class="c__content--container--podcast hs">
       {%- for title in podcast -%} {% include _podcast %} {%- endfor -%}
       <div class="c__spacer"></div>
     </section>
 
-    <h2 class="c__subheader" id="more" c-scroll="scroll &#10140;">More Resources</h2>
+    <h2 data-count="{{other.length}}" class="c__subheader" id="more" c-scroll="scroll &#10140;">More Resources</h2>
     <section class="c__content--container--other hs">
       {%- for title in other -%} {% include _other %} {%- endfor -%}
       <div class="c__spacer"></div>
@@ -149,8 +149,8 @@
   const container = document.querySelector(".c__gallery");
   container.addEventListener("click", e => {
     const elCheck =
-      e.target.classList.contains("c__content--submitter") ||
-      e.target.parentElement.classList.contains("c__content--submitter");
+      e.target.classList.contains("c__share") ||
+      e.target.parentElement.classList.contains("c__share");
     if (!elCheck) {
       const showingTooltips = document.querySelectorAll(".c__sm.show");
       showingTooltips.forEach(el => el.classList.remove("show"));
